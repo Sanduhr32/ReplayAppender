@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '2.0.2'
+}
+
+group 'com.github.sanduhr32'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.6'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile group: 'org.json', name: 'json', version: '20180130'
+    compile group: 'io.netty', name: 'netty-buffer', version: '4.0.56.Final'
+}
+
+shadowJar {
+    mainClassName = "com.github.sanduhr32.MainLauncher"
+}
