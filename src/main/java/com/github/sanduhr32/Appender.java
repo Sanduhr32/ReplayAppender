@@ -173,7 +173,7 @@ public class Appender extends JFrame {
                 index = 1;
             }
             if (index == 1) {
-                int b0 = read;
+                int b0 = stream.read();
                 int b1 = stream.read();
                 int b2 = stream.read();
                 int b3 = stream.read();
