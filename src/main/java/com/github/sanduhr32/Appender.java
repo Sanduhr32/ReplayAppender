@@ -27,10 +27,12 @@ public class Appender extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         if (!Desktop.isDesktopSupported()) {
             System.err.println("This is an desktop application.");
+            System.exit(0x32);
         }
         desktop = Desktop.getDesktop();
         if (!desktop.isSupported(Desktop.Action.OPEN)) {
             System.err.println("I can not open files for exploring. Aborting.");
+            System.exit(0x32);
         }
         selectFile1Button.addActionListener((listener) -> {
             JFileChooser chooser = new JFileChooser();
@@ -95,7 +97,7 @@ public class Appender extends JFrame {
                         newPositions.put(entry.getKey(), newEntity);
                     }
                 } else {
-                    System.err.println("ENTITY VALUE IS DIFFERENT. Aborting");
+                    System.err.println("ENTITY COUNT IS DIFFERENT. Aborting");
                     return;
                 }
 
