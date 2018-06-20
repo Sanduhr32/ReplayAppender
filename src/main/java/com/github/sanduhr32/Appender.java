@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.util.Map;
+import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
@@ -76,10 +77,10 @@ public class Appender extends JFrame {
                 for (final Map.Entry<String, Object> entry : metaData1.toMap().entrySet()) {
                     String key = entry.getKey();
                     Object value = entry.getValue();
-                    if (!key.equals("duration") && value.equals(metaData2.get(key)))
-                        newMeta.put(key, value);
-                    else {
+                    if (key.equals("duration"))
                         newMeta.put(key, metaData1.getLong(key) + metaData2.getLong(key));
+                    else {
+                        newMeta.put(key, value);
                     }
                 }
                 Map<String, Object> pos1 = entityData1.toMap();
@@ -103,25 +104,25 @@ public class Appender extends JFrame {
 
                 ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File("COMBINED.mcpr")));
 
-                zos.putNextEntry(recording1.getEntry("mods.json"));
+                zos.putNextEntry(new ZipEntry("mods.json"));
 
                 zos.write(readFully(recording2.getInputStream(recording1.getEntry("mods.json"))));
 
                 zos.closeEntry();
 
-                zos.putNextEntry(recording1.getEntry("entity_positions.json"));
+                zos.putNextEntry(new ZipEntry("entity_positions.json"));
 
                 zos.write(newPositions.toString().getBytes());
 
                 zos.closeEntry();
 
-                zos.putNextEntry(recording1.getEntry("metaData.json"));
+                zos.putNextEntry(new ZipEntry("metaData.json"));
 
                 zos.write(newMeta.toString().getBytes());
 
                 zos.closeEntry();
 
-                zos.putNextEntry(recording1.getEntry("recording.tmcpr"));
+                zos.putNextEntry(new ZipEntry("recording.tmcpr"));
 
                 zos.write(readPackets(recording1.getInputStream(recording1.getEntry("recording.tmcpr")), metaData1));
 
