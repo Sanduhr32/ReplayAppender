@@ -124,7 +124,8 @@ public class Appender extends JFrame {
 
                 zos.putNextEntry(new ZipEntry("recording.tmcpr"));
 
-                zos.write(readPackets(recording1.getInputStream(recording1.getEntry("recording.tmcpr")), metaData1));
+                zos.write(readFully(recording1.getInputStream(recording1.getEntry("recording.tmcpr"))));
+                zos.write(readPackets(recording2.getInputStream(recording2.getEntry("recording.tmcpr")), metaData1));
 
                 zos.closeEntry();
 
