@@ -15,8 +15,8 @@ public class MainLauncher extends JFrame {
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor(run -> new Thread(run, "Startup-Thread"));
 
         service.scheduleAtFixedRate(() -> {
-            if (progressBar1.getValue() <= 98)
-                progressBar1.setValue(progressBar1.getValue() + 2);
+            if (progressBar1.getValue() <= 99)
+                progressBar1.setValue(progressBar1.getValue() + 1);
             else {
                 Appender appender = new Appender();
                 appender.pack();
@@ -25,7 +25,7 @@ public class MainLauncher extends JFrame {
                 setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 service.shutdown();
             }
-        },2300, 500, TimeUnit.MILLISECONDS);
+        },2300, 120, TimeUnit.MILLISECONDS);
     }
 
     public static void main(String[] args) {

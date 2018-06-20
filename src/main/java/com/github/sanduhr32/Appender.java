@@ -178,15 +178,16 @@ public class Appender extends JFrame {
                 int b3 = stream.read();
 
                 if ((b0 | b1 | b2 | b3) < 0) {
-                    length = -1;
+                    return out.toByteArray();
                 } else {
                     length = (b0 << 24 | b1 << 16 | b2 << 8 | b3);
                 }
-                index = 2;
-            }
-            if (index == 2) {
+
+                if (length < 0)
+                    return out.toByteArray();
+
                 byte[] packet = new byte[length];
-                stream.read(packet, 8, length);
+                stream.read(packet, 0, length);
                 out.write(packet);
                 index = 0;
             }

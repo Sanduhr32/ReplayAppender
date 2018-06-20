@@ -1,5 +1,4 @@
 Manifest-Version: 1.0
-Class-Path: json-20180130.jar netty-common-4.0.56.Final.jar netty-buff
- er-4.0.56.Final.jar
+Class-Path: json-20180130.jar
 Main-Class: com.github.sanduhr32.MainLauncher
 

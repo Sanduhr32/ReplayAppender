@@ -21,7 +21,6 @@ repositories {
 
 dependencies {
     compile group: 'org.json', name: 'json', version: '20180130'
-    compile group: 'io.netty', name: 'netty-buffer', version: '4.0.56.Final'
 }
 
 shadowJar {
